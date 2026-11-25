@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fields name="filter">
+        <field name="search" type="text" inputmode="search" label="COM_PMDOWNLOADS_FILTER_SEARCH_LABEL" hint="JSEARCH_FILTER" />
+        <field name="state" type="status" label="JSTATUS" onchange="this.form.submit();">
+            <option value="">JOPTION_SELECT_PUBLISHED</option>
+        </field>
+        <field name="catid" type="category" label="JCATEGORY" extension="com_pmdownloads" onchange="this.form.submit();">
+            <option value="">JOPTION_SELECT_CATEGORY</option>
+        </field>
+        <field name="maintenance_status" type="list" label="COM_PMDOWNLOADS_FIELD_STATUS_LABEL" onchange="this.form.submit();">
+            <option value="">COM_PMDOWNLOADS_FILTER_ALL_STATUSES</option>
+            <option value="active">COM_PMDOWNLOADS_STATUS_ACTIVE</option>
+            <option value="maintenance">COM_PMDOWNLOADS_STATUS_MAINTENANCE</option>
+            <option value="legacy">COM_PMDOWNLOADS_STATUS_LEGACY</option>
+        </field>
+        <field name="item_type" type="list" label="COM_PMDOWNLOADS_FIELD_ITEM_TYPE_LABEL" onchange="this.form.submit();">
+            <option value="">COM_PMDOWNLOADS_FILTER_ALL_TYPES</option>
+            <option value="template">COM_PMDOWNLOADS_TYPE_TEMPLATE</option>
+            <option value="language_pack">COM_PMDOWNLOADS_TYPE_LANGUAGE_PACK</option>
+            <option value="package">COM_PMDOWNLOADS_TYPE_PACKAGE</option>
+            <option value="component">COM_PMDOWNLOADS_TYPE_COMPONENT</option>
+            <option value="module">COM_PMDOWNLOADS_TYPE_MODULE</option>
+            <option value="plugin">COM_PMDOWNLOADS_TYPE_PLUGIN</option>
+            <option value="tool">COM_PMDOWNLOADS_TYPE_TOOL</option>
+            <option value="asset">COM_PMDOWNLOADS_TYPE_ASSET</option>
+        </field>
+        <field name="language" type="contentlanguage" label="JGRID_HEADING_LANGUAGE" onchange="this.form.submit();">
+            <option value="">JOPTION_SELECT_LANGUAGE</option>
+            <option value="*">JALL</option>
+        </field>
+    </fields>
+    <fields name="list">
+        <field name="fullordering" type="list" label="JGLOBAL_SORT_BY" default="a.ordering ASC" onchange="this.form.submit();">
+            <option value="">JGLOBAL_SORT_BY</option>
+            <option value="a.ordering ASC">JGRID_HEADING_ORDERING_ASC</option>
+            <option value="a.ordering DESC">JGRID_HEADING_ORDERING_DESC</option>
+            <option value="a.title ASC">JGLOBAL_TITLE_ASC</option>
+            <option value="a.title DESC">JGLOBAL_TITLE_DESC</option>
+            <option value="a.downloads_count DESC">COM_PMDOWNLOADS_SORT_DOWNLOADS</option>
+            <option value="a.hits DESC">COM_PMDOWNLOADS_SORT_HITS</option>
+            <option value="a.id DESC">JGRID_HEADING_ID_DESC</option>
+        </field>
+        <field name="limit" type="limitbox" label="JGLOBAL_LIST_LIMIT" default="25" onchange="this.form.submit();" />
+    </fields>
+</form>

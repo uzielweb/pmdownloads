@@ -1,0 +1,27 @@
+{
+    "$schema": "https://developer.joomla.org/schemas/json-schema/web_assets.json",
+    "name": "com_pmdownloads",
+    "version": "1.0.0",
+    "description": "Ponto Mega Downloads Web Assets",
+    "license": "GPL-2.0-or-later",
+    "assets": [
+        {
+            "name": "com_pmdownloads.site",
+            "type": "style",
+            "uri": "com_pmdownloads/site.css",
+            "version": "1.0.0"
+        },
+        {
+            "name": "com_pmdownloads.app",
+            "type": "script",
+            "uri": "com_pmdownloads/app.js",
+            "version": "1.0.0",
+            "dependencies": [
+                "core"
+            ],
+            "attributes": {
+                "defer": true
+            }
+        }
+    ]
+}

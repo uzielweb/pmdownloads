@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" method="upgrade">
+    <name>COM_PMDOWNLOADS</name>
+    <author>Ponto Mega</author>
+    <creationDate>2026-11</creationDate>
+    <copyright>(C) 2026 Ponto Mega. All rights reserved.</copyright>
+    <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+    <authorEmail>contato@pontomega.com.br</authorEmail>
+    <authorUrl>https://pontomega.com.br</authorUrl>
+    <version>1.0.0</version>
+    <description>COM_PMDOWNLOADS_XML_DESCRIPTION</description>
+    <namespace path="src">PontoMega\Component\Pmdownloads</namespace>
+
+    <install>
+        <sql>
+            <file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
+        </sql>
+    </install>
+    <uninstall>
+        <sql>
+            <file driver="mysql" charset="utf8">sql/uninstall.mysql.utf8.sql</file>
+        </sql>
+    </uninstall>
+
+    <files folder="site">
+        <folder>src</folder>
+        <folder>tmpl</folder>
+    </files>
+
+    <languages folder="site/language">
+        <language tag="pt-BR">pt-BR/com_pmdownloads.ini</language>
+        <language tag="en-GB">en-GB/com_pmdownloads.ini</language>
+    </languages>
+
+    <media destination="com_pmdownloads" folder="media">
+        <filename>joomla.asset.json</filename>
+        <folder>css</folder>
+        <folder>js</folder>
+    </media>
+
+    <administration>
+        <menu img="class:download" link="option=com_pmdownloads">COM_PMDOWNLOADS</menu>
+        <submenu>
+            <menu link="option=com_pmdownloads&amp;view=items">COM_PMDOWNLOADS_SUBMENU_ITEMS</menu>
+            <menu link="option=com_categories&amp;extension=com_pmdownloads">COM_PMDOWNLOADS_SUBMENU_CATEGORIES</menu>
+        </submenu>
+
+        <files folder="admin">
+            <filename>access.xml</filename>
+            <filename>config.xml</filename>
+            <folder>forms</folder>
+            <folder>services</folder>
+            <folder>sql</folder>
+            <folder>src</folder>
+            <folder>tmpl</folder>
+        </files>
+
+        <languages folder="admin/language">
+            <language tag="pt-BR">pt-BR/com_pmdownloads.ini</language>
+            <language tag="pt-BR">pt-BR/com_pmdownloads.sys.ini</language>
+            <language tag="en-GB">en-GB/com_pmdownloads.ini</language>
+            <language tag="en-GB">en-GB/com_pmdownloads.sys.ini</language>
+        </languages>
+    </administration>
+</extension>

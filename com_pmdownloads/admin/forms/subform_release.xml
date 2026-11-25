@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <field name="id" type="hidden" default="0" />
+    <field name="title" type="text" label="COM_PMDOWNLOADS_RELEASE_TITLE_LABEL" required="true" />
+    <field name="version" type="text" label="COM_PMDOWNLOADS_RELEASE_VERSION_LABEL" default="1.0.0" required="true" />
+    <field name="maturity" type="list" label="COM_PMDOWNLOADS_RELEASE_MATURITY_LABEL" default="stable">
+        <option value="stable">COM_PMDOWNLOADS_MATURITY_STABLE</option>
+        <option value="rc">COM_PMDOWNLOADS_MATURITY_RC</option>
+        <option value="beta">COM_PMDOWNLOADS_MATURITY_BETA</option>
+        <option value="alpha">COM_PMDOWNLOADS_MATURITY_ALPHA</option>
+        <option value="legacy">COM_PMDOWNLOADS_MATURITY_LEGACY</option>
+    </field>
+    <field name="release_date" type="calendar" label="COM_PMDOWNLOADS_RELEASE_DATE_LABEL" translateformat="true" showtime="true" filter="user_utc" />
+    <field name="source_type" type="list" label="COM_PMDOWNLOADS_RELEASE_SOURCE_LABEL" default="local">
+        <option value="local">COM_PMDOWNLOADS_SOURCE_LOCAL</option>
+        <option value="github_release">COM_PMDOWNLOADS_SOURCE_GITHUB</option>
+        <option value="url">COM_PMDOWNLOADS_SOURCE_URL</option>
+    </field>
+    <field name="file_path" type="text" label="COM_PMDOWNLOADS_RELEASE_PATH_LABEL" description="COM_PMDOWNLOADS_RELEASE_PATH_DESC" required="true" />
+    <field name="file_name" type="text" label="COM_PMDOWNLOADS_RELEASE_FILENAME_LABEL" />
+    <field name="file_size" type="number" label="COM_PMDOWNLOADS_RELEASE_SIZE_LABEL" default="0" />
+    <field name="sha256" type="text" label="COM_PMDOWNLOADS_RELEASE_SHA256_LABEL" maxlength="64" />
+    <field name="joomla_target" type="text" label="COM_PMDOWNLOADS_RELEASE_TARGET_LABEL" default="^[56]\." />
+    <field name="php_minimum" type="text" label="COM_PMDOWNLOADS_RELEASE_PHPMIN_LABEL" default="8.1" />
+    <field name="is_current" type="radio" layout="joomla.form.field.radio.switcher" label="COM_PMDOWNLOADS_RELEASE_CURRENT_LABEL" default="1">
+        <option value="0">JNO</option>
+        <option value="1">JYES</option>
+    </field>
+    <field name="changelog" type="textarea" label="COM_PMDOWNLOADS_RELEASE_CHANGELOG_LABEL" rows="4" />
+    <field name="downloads_count" type="number" label="COM_PMDOWNLOADS_FIELD_DOWNLOADS_LABEL" default="0" readonly="true" class="readonly" />
+</form>

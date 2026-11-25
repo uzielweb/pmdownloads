@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <fieldset name="general" label="COM_PMDOWNLOADS_CONFIG_GENERAL_LABEL">
+        <field
+            name="storage_path"
+            type="text"
+            label="COM_PMDOWNLOADS_CONFIG_STORAGE_PATH_LABEL"
+            description="COM_PMDOWNLOADS_CONFIG_STORAGE_PATH_DESC"
+            default="files/pmdownloads"
+        />
+        <field
+            name="items_per_page"
+            type="number"
+            label="COM_PMDOWNLOADS_CONFIG_ITEMS_PER_PAGE_LABEL"
+            default="12"
+            min="4"
+            max="60"
+        />
+        <field
+            name="default_sort"
+            type="list"
+            label="COM_PMDOWNLOADS_CONFIG_DEFAULT_SORT_LABEL"
+            default="featured"
+        >
+            <option value="featured">COM_PMDOWNLOADS_SORT_FEATURED</option>
+            <option value="downloads">COM_PMDOWNLOADS_SORT_DOWNLOADS</option>
+            <option value="recent">COM_PMDOWNLOADS_SORT_RECENT</option>
+            <option value="hits">COM_PMDOWNLOADS_SORT_HITS</option>
+            <option value="alpha">COM_PMDOWNLOADS_SORT_ALPHA</option>
+        </field>
+        <field
+            name="enable_updateserver"
+            type="radio"
+            layout="joomla.form.field.radio.switcher"
+            label="COM_PMDOWNLOADS_CONFIG_UPDATESERVER_LABEL"
+            default="1"
+        >
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+        <field
+            name="enable_schema_jsonld"
+            type="radio"
+            layout="joomla.form.field.radio.switcher"
+            label="COM_PMDOWNLOADS_CONFIG_JSONLD_LABEL"
+            default="1"
+        >
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+        <field
+            name="enable_related"
+            type="radio"
+            layout="joomla.form.field.radio.switcher"
+            label="COM_PMDOWNLOADS_CONFIG_RELATED_LABEL"
+            default="1"
+        >
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+    </fieldset>
+    <fieldset name="permissions" label="JCONFIG_PERMISSIONS_LABEL">
+        <field
+            name="rules"
+            type="rules"
+            label="JCONFIG_PERMISSIONS_LABEL"
+            validate="rules"
+            filter="rules"
+            component="com_pmdownloads"
+            section="component"
+        />
+    </fieldset>
+</config>

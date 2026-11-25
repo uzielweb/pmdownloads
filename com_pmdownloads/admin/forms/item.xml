@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fieldset name="details" label="COM_PMDOWNLOADS_TAB_GENERAL">
+        <field name="id" type="number" label="JGLOBAL_FIELD_ID_LABEL" default="0" readonly="true" class="readonly" />
+        <field name="title" type="text" label="JGLOBAL_TITLE" required="true" />
+        <field name="alias" type="text" label="JFIELD_ALIAS_LABEL" hint="JFIELD_ALIAS_PLACEHOLDER" />
+        <field name="subtitle" type="text" label="COM_PMDOWNLOADS_FIELD_SUBTITLE_LABEL" />
+        <field
+            name="catid"
+            type="categoryedit"
+            extension="com_pmdownloads"
+            label="JCATEGORY"
+            required="true"
+            layout="joomla.form.field.list-fancy-select"
+        />
+        <field
+            name="summary"
+            type="textarea"
+            label="COM_PMDOWNLOADS_FIELD_SUMMARY_LABEL"
+            rows="3"
+            maxlength="500"
+            required="true"
+        />
+        <field
+            name="description"
+            type="editor"
+            label="COM_PMDOWNLOADS_FIELD_DESCRIPTION_LABEL"
+            buttons="true"
+            filter="Joomla\CMS\Component\ComponentHelper::filterText"
+        />
+        <field
+            name="item_type"
+            type="list"
+            label="COM_PMDOWNLOADS_FIELD_ITEM_TYPE_LABEL"
+            default="package"
+            layout="joomla.form.field.list-fancy-select"
+        >
+            <option value="template">COM_PMDOWNLOADS_TYPE_TEMPLATE</option>
+            <option value="language_pack">COM_PMDOWNLOADS_TYPE_LANGUAGE_PACK</option>
+            <option value="package">COM_PMDOWNLOADS_TYPE_PACKAGE</option>
+            <option value="component">COM_PMDOWNLOADS_TYPE_COMPONENT</option>
+            <option value="module">COM_PMDOWNLOADS_TYPE_MODULE</option>
+            <option value="plugin">COM_PMDOWNLOADS_TYPE_PLUGIN</option>
+            <option value="tool">COM_PMDOWNLOADS_TYPE_TOOL</option>
+            <option value="asset">COM_PMDOWNLOADS_TYPE_ASSET</option>
+        </field>
+        <field
+            name="maintenance_status"
+            type="list"
+            label="COM_PMDOWNLOADS_FIELD_STATUS_LABEL"
+            default="active"
+            layout="joomla.form.field.list-fancy-select"
+        >
+            <option value="active">COM_PMDOWNLOADS_STATUS_ACTIVE</option>
+            <option value="maintenance">COM_PMDOWNLOADS_STATUS_MAINTENANCE</option>
+            <option value="legacy">COM_PMDOWNLOADS_STATUS_LEGACY</option>
+        </field>
+        <field
+            name="versions"
+            type="list"
+            label="COM_PMDOWNLOADS_FIELD_VERSIONS_LABEL"
+            multiple="true"
+            layout="joomla.form.field.list-fancy-select"
+        >
+            <option value="j6">COM_PMDOWNLOADS_VERSION_J6</option>
+            <option value="j5">COM_PMDOWNLOADS_VERSION_J5</option>
+            <option value="j4">COM_PMDOWNLOADS_VERSION_J4</option>
+            <option value="j3">COM_PMDOWNLOADS_VERSION_J3</option>
+            <option value="j25">COM_PMDOWNLOADS_VERSION_J25</option>
+            <option value="other">COM_PMDOWNLOADS_VERSION_OTHER</option>
+        </field>
+        <field name="min_php" type="text" label="COM_PMDOWNLOADS_FIELD_MIN_PHP_LABEL" default="8.1" />
+        <field name="license" type="text" label="COM_PMDOWNLOADS_FIELD_LICENSE_LABEL" default="GPL-2.0-or-later" />
+        <field name="cover_image" type="media" label="COM_PMDOWNLOADS_FIELD_COVER_IMAGE_LABEL" />
+        <field name="cover_alt" type="text" label="COM_PMDOWNLOADS_FIELD_COVER_ALT_LABEL" />
+        <field name="repo_url" type="url" label="COM_PMDOWNLOADS_FIELD_REPO_URL_LABEL" scheme="http,https" />
+        <field name="demo_url" type="url" label="COM_PMDOWNLOADS_FIELD_DEMO_URL_LABEL" scheme="http,https" />
+        <field name="docs_url" type="url" label="COM_PMDOWNLOADS_FIELD_DOCS_URL_LABEL" scheme="http,https" />
+        <field name="support_url" type="url" label="COM_PMDOWNLOADS_FIELD_SUPPORT_URL_LABEL" scheme="http,https" />
+        <field name="tags" type="tag" label="JTAG" multiple="true" custom="allow" />
+        <field name="state" type="list" label="JSTATUS" default="1" class="form-select-color-state">
+            <option value="1">JPUBLISHED</option>
+            <option value="0">JUNPUBLISHED</option>
+            <option value="2">JARCHIVED</option>
+            <option value="-2">JTRASHED</option>
+        </field>
+        <field name="featured" type="radio" layout="joomla.form.field.radio.switcher" label="JFEATURED" default="0">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+        <field name="access" type="accesslevel" label="JFIELD_ACCESS_LABEL" default="1" />
+        <field name="language" type="contentlanguage" label="JFIELD_LANGUAGE_LABEL" default="*">
+            <option value="*">JALL</option>
+        </field>
+    </fieldset>
+
+    <fieldset name="releases" label="COM_PMDOWNLOADS_TAB_RELEASES">
+        <field
+            name="releases"
+            type="subform"
+            label="COM_PMDOWNLOADS_FIELD_RELEASES_LABEL"
+            description="COM_PMDOWNLOADS_FIELD_RELEASES_DESC"
+            formsource="administrator/components/com_pmdownloads/forms/subform_release.xml"
+            multiple="true"
+            min="1"
+            buttons="add,remove,move"
+        />
+    </fieldset>
+
+    <fieldset name="updateserver" label="COM_PMDOWNLOADS_TAB_UPDATESERVER">
+        <field name="enable_updateserver" type="radio" layout="joomla.form.field.radio.switcher" label="COM_PMDOWNLOADS_FIELD_ENABLE_UPDATESERVER_LABEL" default="0">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+        <field name="element_name" type="text" label="COM_PMDOWNLOADS_FIELD_ELEMENT_LABEL" description="COM_PMDOWNLOADS_FIELD_ELEMENT_DESC" showon="enable_updateserver:1" />
+        <field name="extension_type" type="list" label="COM_PMDOWNLOADS_FIELD_EXT_TYPE_LABEL" default="package" showon="enable_updateserver:1">
+            <option value="template">COM_PMDOWNLOADS_TYPE_TEMPLATE</option>
+            <option value="package">COM_PMDOWNLOADS_TYPE_PACKAGE</option>
+            <option value="component">COM_PMDOWNLOADS_TYPE_COMPONENT</option>
+            <option value="module">COM_PMDOWNLOADS_TYPE_MODULE</option>
+            <option value="plugin">COM_PMDOWNLOADS_TYPE_PLUGIN</option>
+            <option value="file">COM_PMDOWNLOADS_EXT_TYPE_FILE</option>
+        </field>
+        <field name="client_type" type="list" label="COM_PMDOWNLOADS_FIELD_CLIENT_LABEL" default="site" showon="enable_updateserver:1">
+            <option value="site">JSITE</option>
+            <option value="administrator">JADMINISTRATOR</option>
+        </field>
+        <field name="plugin_folder" type="text" label="COM_PMDOWNLOADS_FIELD_PLUGIN_FOLDER_LABEL" showon="enable_updateserver:1[AND]extension_type:plugin" />
+    </fieldset>
+
+    <fieldset name="publishing" label="COM_PMDOWNLOADS_TAB_PUBLISHING">
+        <field name="metadesc" type="textarea" label="JFIELD_META_DESCRIPTION_LABEL" rows="3" />
+        <field name="metakey" type="textarea" label="JFIELD_META_KEYWORDS_LABEL" rows="2" />
+        <field name="created" type="calendar" label="JGLOBAL_FIELD_CREATED_LABEL" translateformat="true" showtime="true" filter="user_utc" />
+        <field name="created_by" type="user" label="JGLOBAL_FIELD_CREATED_BY_LABEL" />
+        <field name="publish_up" type="calendar" label="JGLOBAL_FIELD_PUBLISH_UP_LABEL" translateformat="true" showtime="true" filter="user_utc" />
+        <field name="publish_down" type="calendar" label="JGLOBAL_FIELD_PUBLISH_DOWN_LABEL" translateformat="true" showtime="true" filter="user_utc" />
+        <field name="hits" type="number" label="JGLOBAL_HITS" readonly="true" class="readonly" />
+        <field name="downloads_count" type="number" label="COM_PMDOWNLOADS_FIELD_DOWNLOADS_LABEL" readonly="true" class="readonly" />
+    </fieldset>
+</form>

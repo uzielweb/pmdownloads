@@ -1,0 +1,91 @@
+SET NAMES utf8mb4;
+
+CREATE TABLE IF NOT EXISTS `#__pmdownloads_items` (
+    `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `asset_id` INT UNSIGNED NOT NULL DEFAULT 0,
+    `catid` INT UNSIGNED NOT NULL DEFAULT 0,
+    `title` VARCHAR(255) NOT NULL DEFAULT '',
+    `alias` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '',
+    `subtitle` VARCHAR(255) NOT NULL DEFAULT '',
+    `summary` VARCHAR(500) NOT NULL DEFAULT '',
+    `description` MEDIUMTEXT,
+    `item_type` VARCHAR(32) NOT NULL DEFAULT 'extension',
+    `maintenance_status` VARCHAR(24) NOT NULL DEFAULT 'active',
+    `platform` VARCHAR(32) NOT NULL DEFAULT 'joomla',
+    `license` VARCHAR(64) NOT NULL DEFAULT 'GPL-2.0-or-later',
+    `min_php` VARCHAR(24) NOT NULL DEFAULT '8.1',
+    `element_name` VARCHAR(120) NOT NULL DEFAULT '',
+    `extension_type` VARCHAR(32) NOT NULL DEFAULT 'package',
+    `client_type` VARCHAR(20) NOT NULL DEFAULT 'site',
+    `plugin_folder` VARCHAR(64) NOT NULL DEFAULT '',
+    `repo_url` VARCHAR(500) NOT NULL DEFAULT '',
+    `demo_url` VARCHAR(500) NOT NULL DEFAULT '',
+    `docs_url` VARCHAR(500) NOT NULL DEFAULT '',
+    `support_url` VARCHAR(500) NOT NULL DEFAULT '',
+    `cover_image` VARCHAR(500) NOT NULL DEFAULT '',
+    `cover_alt` VARCHAR(255) NOT NULL DEFAULT '',
+    `enable_updateserver` TINYINT UNSIGNED NOT NULL DEFAULT 0,
+    `releases_search_text` MEDIUMTEXT,
+    `featured` TINYINT UNSIGNED NOT NULL DEFAULT 0,
+    `state` TINYINT NOT NULL DEFAULT 1,
+    `access` INT UNSIGNED NOT NULL DEFAULT 1,
+    `ordering` INT NOT NULL DEFAULT 0,
+    `hits` INT UNSIGNED NOT NULL DEFAULT 0,
+    `downloads_count` INT UNSIGNED NOT NULL DEFAULT 0,
+    `language` CHAR(7) NOT NULL DEFAULT '*',
+    `metadesc` VARCHAR(1024) NOT NULL DEFAULT '',
+    `metakey` VARCHAR(1024) NOT NULL DEFAULT '',
+    `metadata` TEXT,
+    `created` DATETIME NOT NULL,
+    `created_by` INT UNSIGNED NOT NULL DEFAULT 0,
+    `modified` DATETIME NOT NULL,
+    `modified_by` INT UNSIGNED NOT NULL DEFAULT 0,
+    `publish_up` DATETIME NULL DEFAULT NULL,
+    `publish_down` DATETIME NULL DEFAULT NULL,
+    `checked_out` INT UNSIGNED NULL DEFAULT NULL,
+    `checked_out_time` DATETIME NULL DEFAULT NULL,
+    PRIMARY KEY (`id`),
+    KEY `idx_state_access_lang` (`state`, `access`, `language`),
+    KEY `idx_catid` (`catid`),
+    KEY `idx_alias` (`alias`(191)),
+    KEY `idx_type_status` (`item_type`, `maintenance_status`),
+    KEY `idx_featured_downloads` (`featured`, `downloads_count`, `hits`),
+    FULLTEXT KEY `ft_pmdownloads_search` (`title`, `subtitle`, `summary`, `description`, `releases_search_text`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `#__pmdownloads_releases` (
+    `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `item_id` INT UNSIGNED NOT NULL,
+    `title` VARCHAR(255) NOT NULL DEFAULT '',
+    `version` VARCHAR(64) NOT NULL DEFAULT '1.0.0',
+    `maturity` VARCHAR(24) NOT NULL DEFAULT 'stable',
+    `release_date` DATETIME NOT NULL,
+    `changelog` MEDIUMTEXT,
+    `source_type` VARCHAR(24) NOT NULL DEFAULT 'local',
+    `file_path` VARCHAR(1000) NOT NULL DEFAULT '',
+    `file_name` VARCHAR(255) NOT NULL DEFAULT '',
+    `file_size` BIGINT UNSIGNED NOT NULL DEFAULT 0,
+    `sha256` CHAR(64) NOT NULL DEFAULT '',
+    `joomla_target` VARCHAR(64) NOT NULL DEFAULT '^[56]\\.',
+    `php_minimum` VARCHAR(24) NOT NULL DEFAULT '8.1',
+    `downloads_count` INT UNSIGNED NOT NULL DEFAULT 0,
+    `is_current` TINYINT UNSIGNED NOT NULL DEFAULT 0,
+    `state` TINYINT NOT NULL DEFAULT 1,
+    `ordering` INT NOT NULL DEFAULT 0,
+    PRIMARY KEY (`id`),
+    KEY `idx_item_current` (`item_id`, `is_current`, `state`),
+    KEY `idx_release_date` (`release_date`),
+    CONSTRAINT `fk_pmdownloads_releases_item`
+        FOREIGN KEY (`item_id`) REFERENCES `#__pmdownloads_items` (`id`)
+        ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `#__pmdownloads_item_versions` (
+    `item_id` INT UNSIGNED NOT NULL,
+    `version_code` VARCHAR(16) NOT NULL,
+    PRIMARY KEY (`item_id`, `version_code`),
+    KEY `idx_version_code` (`version_code`),
+    CONSTRAINT `fk_pmdownloads_item_versions_item`
+        FOREIGN KEY (`item_id`) REFERENCES `#__pmdownloads_items` (`id`)
+        ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" group="finder" method="upgrade">
+    <name>PLG_FINDER_PMDOWNLOADS</name>
+    <author>Ponto Mega</author>
+    <creationDate>2026-11</creationDate>
+    <copyright>(C) 2026 Ponto Mega. All rights reserved.</copyright>
+    <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+    <authorEmail>contato@pontomega.com.br</authorEmail>
+    <authorUrl>https://pontomega.com.br</authorUrl>
+    <version>1.0.0</version>
+    <description>PLG_FINDER_PMDOWNLOADS_XML_DESCRIPTION</description>
+    <namespace path="src">PontoMega\Plugin\Finder\Pmdownloads</namespace>
+
+    <files>
+        <folder plugin="pmdownloads">services</folder>
+        <folder>src</folder>
+    </files>
+
+    <languages folder="language">
+        <language tag="pt-BR">pt-BR/plg_finder_pmdownloads.ini</language>
+        <language tag="pt-BR">pt-BR/plg_finder_pmdownloads.sys.ini</language>
+        <language tag="en-GB">en-GB/plg_finder_pmdownloads.ini</language>
+        <language tag="en-GB">en-GB/plg_finder_pmdownloads.sys.ini</language>
+    </languages>
+</extension>

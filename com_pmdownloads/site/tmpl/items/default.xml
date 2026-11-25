@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <layout title="COM_PMDOWNLOADS_ITEMS_VIEW_DEFAULT_TITLE">
+        <message><![CDATA[COM_PMDOWNLOADS_ITEMS_VIEW_DEFAULT_DESC]]></message>
+    </layout>
+    <fields name="params">
+        <fieldset name="basic" label="COM_PMDOWNLOADS_MENU_OPTIONS">
+            <field name="catid" type="category" extension="com_pmdownloads" label="JCATEGORY">
+                <option value="0">JALL</option>
+            </field>
+            <field name="default_status" type="list" label="COM_PMDOWNLOADS_FIELD_STATUS_LABEL" default="">
+                <option value="">COM_PMDOWNLOADS_FILTER_ALL_STATUSES</option>
+                <option value="active">COM_PMDOWNLOADS_STATUS_ACTIVE</option>
+                <option value="legacy">COM_PMDOWNLOADS_STATUS_LEGACY</option>
+            </field>
+            <field name="items_per_page" type="number" label="COM_PMDOWNLOADS_CONFIG_ITEMS_PER_PAGE_LABEL" default="12" min="4" max="60" />
+            <field name="default_sort" type="list" label="COM_PMDOWNLOADS_CONFIG_DEFAULT_SORT_LABEL" default="featured">
+                <option value="featured">COM_PMDOWNLOADS_SORT_FEATURED</option>
+                <option value="downloads">COM_PMDOWNLOADS_SORT_DOWNLOADS</option>
+                <option value="recent">COM_PMDOWNLOADS_SORT_RECENT</option>
+                <option value="hits">COM_PMDOWNLOADS_SORT_HITS</option>
+                <option value="alpha">COM_PMDOWNLOADS_SORT_ALPHA</option>
+            </field>
+        </fieldset>
+    </fields>
+</metadata>
