@@ -86,7 +86,7 @@ class HtmlView extends BaseHtmlView
         }
 
         $baseOrigin = Uri::getInstance()->toString(['scheme', 'host', 'port']);
-        $canonical  = $baseOrigin . Route::_(RouteHelper::getItemRoute($this->item->slug, (int) $this->item->catid, (string) $this->item->language));
+        $canonical  = $baseOrigin . Route::_(RouteHelper::getItemRoute($this->item->slug, (int) $this->item->catid, (string) $this->item->language), false);
         $doc->addHeadLink($canonical, 'canonical');
 
         $app->getPathway()->addItem((string) $this->item->title);
@@ -117,7 +117,7 @@ class HtmlView extends BaseHtmlView
             if ($rel) {
                 $schema['softwareVersion'] = (string) $rel->version;
                 $schema['datePublished']   = (string) $rel->release_date;
-                $schema['downloadUrl']     = $baseOrigin . Route::_(RouteHelper::getDownloadRoute((int) $rel->id));
+                $schema['downloadUrl']     = $baseOrigin . Route::_(RouteHelper::getDownloadRoute((int) $rel->id), false);
                 if ((int) $rel->file_size > 0) {
                     $schema['fileSize'] = PmdownloadsHelper::formatFileSize((int) $rel->file_size);
                 }

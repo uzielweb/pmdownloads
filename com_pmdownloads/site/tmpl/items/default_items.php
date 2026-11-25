@@ -29,9 +29,9 @@ if (empty($this->items)) : ?>
 <?php else : ?>
     <div class="pmd-grid">
         <?php foreach ($this->items as $item) :
-            $itemUrl   = Route::_(RouteHelper::getItemRoute($item->slug, (int) $item->catid, (string) $item->language));
+            $itemUrl   = Route::_(RouteHelper::getItemRoute($item->slug, (int) $item->catid, (string) $item->language), false);
             $rel       = $item->current_release;
-            $dlUrl     = $rel ? Route::_(RouteHelper::getDownloadRoute((int) $rel->id)) : $itemUrl;
+            $dlUrl     = $rel ? Route::_(RouteHelper::getDownloadRoute((int) $rel->id), false) : $itemUrl;
             $isActive  = ($item->maintenance_status === 'active');
             $rawCover  = !empty($item->cover_image) ? HTMLHelper::cleanImageURL((string) $item->cover_image)->url : '';
             $coverUrl  = $rawCover !== '' ? (preg_match('#^https?://#i', $rawCover) ? $rawCover : Uri::root(true) . '/' . ltrim($rawCover, '/')) : '';

@@ -27,13 +27,13 @@ $wa->getRegistry()->addExtensionRegistryFile('com_pmdownloads');
 $wa->useStyle('com_pmdownloads.site');
 
 $langTag    = $app->getLanguage()->getTag();
-$catalogUrl = Route::_(RouteHelper::getItemsRoute(0, $langTag));
+$catalogUrl = Route::_(RouteHelper::getItemsRoute(0, $langTag), false);
 ?>
 <div class="mod-pmdownloads">
     <div class="pmd-mod-grid">
         <?php foreach ($list as $item) :
-            $itemUrl  = Route::_(RouteHelper::getItemRoute($item->slug, (int) $item->catid, (string) $item->language));
-            $dlUrl    = !empty($item->current_release_id) ? Route::_(RouteHelper::getDownloadRoute((int) $item->current_release_id)) : $itemUrl;
+            $itemUrl  = Route::_(RouteHelper::getItemRoute($item->slug, (int) $item->catid, (string) $item->language), false);
+            $dlUrl    = !empty($item->current_release_id) ? Route::_(RouteHelper::getDownloadRoute((int) $item->current_release_id), false) : $itemUrl;
             $rawCover = !empty($item->cover_image) ? HTMLHelper::cleanImageURL((string) $item->cover_image)->url : '';
             $coverUrl = $rawCover !== '' ? (preg_match('#^https?://#i', $rawCover) ? $rawCover : Uri::root(true) . '/' . ltrim($rawCover, '/')) : '';
             ?>

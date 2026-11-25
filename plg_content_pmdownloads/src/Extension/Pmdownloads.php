@@ -72,8 +72,8 @@ final class Pmdownloads extends CMSPlugin implements SubscriberInterface
                     $assetsLoaded = true;
                 }
 
-                $itemUrl = Route::_(RouteHelper::getItemRoute($item->id . ':' . $item->alias, (int) $item->catid, (string) $item->language));
-                $dlUrl   = !empty($item->release_id) ? Route::_(RouteHelper::getDownloadRoute((int) $item->release_id)) : $itemUrl;
+                $itemUrl = Route::_(RouteHelper::getItemRoute($item->id . ':' . $item->alias, (int) $item->catid, (string) $item->language), false);
+                $dlUrl   = !empty($item->release_id) ? Route::_(RouteHelper::getDownloadRoute((int) $item->release_id), false) : $itemUrl;
                 $sizeStr = !empty($item->file_size) ? PmdownloadsHelper::formatFileSize((int) $item->file_size) : '';
 
                 $html  = '<div class="pmd-embed">';

@@ -25,15 +25,15 @@ $statOpts   = PmdownloadsHelper::getStatusOptions();
 $matOpts    = PmdownloadsHelper::getMaturityOptions();
 $isActive   = ($item->maintenance_status === 'active');
 $origin     = Uri::getInstance()->toString(['scheme', 'host', 'port']);
-$backUrl    = Route::_(RouteHelper::getItemsRoute(0, (string) $item->language));
-$catUrl     = Route::_(RouteHelper::getItemsRoute((int) $item->catid, (string) $item->language));
+$backUrl    = Route::_(RouteHelper::getItemsRoute(0, (string) $item->language), false);
+$catUrl     = Route::_(RouteHelper::getItemsRoute((int) $item->catid, (string) $item->language), false);
 $rawCover   = !empty($item->cover_image) ? HTMLHelper::cleanImageURL((string) $item->cover_image)->url : '';
 $coverUrl   = $rawCover !== '' ? (preg_match('#^https?://#i', $rawCover) ? $rawCover : Uri::root(true) . '/' . ltrim($rawCover, '/')) : '';
 $updateUrl  = ((int) $item->enable_updateserver === 1 && !empty($item->element_name))
-    ? $origin . Route::_(RouteHelper::getUpdateServerRoute($item->slug, (string) $item->language))
+    ? $origin . Route::_(RouteHelper::getUpdateServerRoute($item->slug, (string) $item->language), false)
     : '';
 $chgUrl     = $updateUrl !== ''
-    ? $origin . Route::_(RouteHelper::getChangelogRoute($item->slug, (string) $item->language))
+    ? $origin . Route::_(RouteHelper::getChangelogRoute($item->slug, (string) $item->language), false)
     : '';
 ?>
 <article class="com-pmdownloads pmd-detail" data-pmd-detail>
@@ -105,7 +105,7 @@ $chgUrl     = $updateUrl !== ''
             </div>
 
             <?php if ($rel) :
-                $dlUrl    = Route::_(RouteHelper::getDownloadRoute((int) $rel->id));
+                $dlUrl    = Route::_(RouteHelper::getDownloadRoute((int) $rel->id), false);
                 $absDlUrl = $origin . $dlUrl;
                 ?>
                 <a href="<?php echo htmlspecialchars($dlUrl, ENT_QUOTES, 'UTF-8'); ?>" class="pmd-btn pmd-btn--primary pmd-download-box__cta">
@@ -217,7 +217,7 @@ $chgUrl     = $updateUrl !== ''
             <?php if (!empty($item->releases)) : ?>
                 <div class="pmd-releases-list">
                     <?php foreach ($item->releases as $r) :
-                        $rDlUrl = Route::_(RouteHelper::getDownloadRoute((int) $r->id));
+                        $rDlUrl = Route::_(RouteHelper::getDownloadRoute((int) $r->id), false);
                         $lines  = PmdownloadsHelper::parseChangelogLines((string) ($r->changelog ?? ''));
                         ?>
                         <div class="pmd-release-row<?php echo (int) $r->is_current === 1 ? ' is-current' : ''; ?>">
@@ -290,7 +290,7 @@ $chgUrl     = $updateUrl !== ''
             <h2 class="pmd-related__title"><?php echo Text::_('COM_PMDOWNLOADS_RELATED_TITLE'); ?></h2>
             <div class="pmd-related__grid">
                 <?php foreach ($this->related as $relItem) :
-                    $rUrl = Route::_(RouteHelper::getItemRoute($relItem->slug, (int) $relItem->catid, (string) $relItem->language));
+                    $rUrl = Route::_(RouteHelper::getItemRoute($relItem->slug, (int) $relItem->catid, (string) $relItem->language), false);
                     ?>
                     <a href="<?php echo htmlspecialchars($rUrl, ENT_QUOTES, 'UTF-8'); ?>" class="pmd-related-card">
                         <div class="pmd-card__badges">
