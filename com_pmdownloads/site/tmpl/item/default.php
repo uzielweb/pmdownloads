@@ -272,7 +272,7 @@ if ((int) $item->enable_updateserver === 1 && !empty($item->element_name)) {
             <div class="pmd-tabs__panel" role="tabpanel" data-pmd-panel="updateserver">
                 <p class="pmd-detail__prose"><?php echo Text::_('COM_PMDOWNLOADS_UPDATESERVER_INTRO'); ?></p>
                 <div class="pmd-endpoint-box">
-                    <span class="pmd-endpoint-box__label"><?php echo Text::_('COM_PMDOWNLOADS_UPDATESERVER_URL_LABEL'); ?></span>
+                    <span class="pmd-endpoint-box__label"><?php echo htmlspecialchars(Text::_('COM_PMDOWNLOADS_UPDATESERVER_URL_LABEL'), ENT_QUOTES, 'UTF-8'); ?></span>
                     <code><?php echo htmlspecialchars($updateUrl, ENT_QUOTES, 'UTF-8'); ?></code>
                     <button type="button" class="pmd-btn pmd-btn--outline pmd-btn--sm" data-pmd-copy="<?php echo htmlspecialchars($updateUrl, ENT_QUOTES, 'UTF-8'); ?>">
                         <i class="fa-regular fa-copy" aria-hidden="true"></i>
@@ -281,7 +281,7 @@ if ((int) $item->enable_updateserver === 1 && !empty($item->element_name)) {
                 </div>
                 <?php if ($chgUrl !== '') : ?>
                     <div class="pmd-endpoint-box">
-                        <span class="pmd-endpoint-box__label"><?php echo Text::_('COM_PMDOWNLOADS_CHANGELOG_URL_LABEL'); ?></span>
+                        <span class="pmd-endpoint-box__label"><?php echo htmlspecialchars(Text::_('COM_PMDOWNLOADS_CHANGELOG_URL_LABEL'), ENT_QUOTES, 'UTF-8'); ?></span>
                         <code><?php echo htmlspecialchars($chgUrl, ENT_QUOTES, 'UTF-8'); ?></code>
                         <button type="button" class="pmd-btn pmd-btn--outline pmd-btn--sm" data-pmd-copy="<?php echo htmlspecialchars($chgUrl, ENT_QUOTES, 'UTF-8'); ?>">
                             <i class="fa-regular fa-copy" aria-hidden="true"></i>
