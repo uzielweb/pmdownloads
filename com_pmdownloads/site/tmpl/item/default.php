@@ -29,12 +29,18 @@ $backUrl    = Route::_(RouteHelper::getItemsRoute(0, (string) $item->language), 
 $catUrl     = Route::_(RouteHelper::getItemsRoute((int) $item->catid, (string) $item->language), false);
 $rawCover   = !empty($item->cover_image) ? HTMLHelper::cleanImageURL((string) $item->cover_image)->url : '';
 $coverUrl   = $rawCover !== '' ? (preg_match('#^https?://#i', $rawCover) ? $rawCover : Uri::root(true) . '/' . ltrim($rawCover, '/')) : '';
-$updateUrl  = ((int) $item->enable_updateserver === 1 && !empty($item->element_name))
-    ? $origin . Route::_(RouteHelper::getUpdateServerRoute($item->slug, (string) $item->language), false)
-    : '';
-$chgUrl     = $updateUrl !== ''
-    ? $origin . Route::_(RouteHelper::getChangelogRoute($item->slug, (string) $item->language), false)
-    : '';
+$updateUrl  = '';
+$chgUrl     = '';
+if ((int) $item->enable_updateserver === 1 && !empty($item->element_name)) {
+    $hasGithub = PmdownloadsHelper::parseGithubRepo((string) ($item->repo_url ?? '')) !== null;
+    $updateUrl = PmdownloadsHelper::resolveUpdateServerUrl($item);
+    $chgUrl    = PmdownloadsHelper::resolveChangelogUrl($item);
+
+    if ($updateUrl === '' && !$hasGithub) {
+        $updateUrl = $origin . Route::_(RouteHelper::getUpdateServerRoute($item->slug, (string) $item->language), false);
+        $chgUrl    = $origin . Route::_(RouteHelper::getChangelogRoute($item->slug, (string) $item->language), false);
+    }
+}
 ?>
 <article class="com-pmdownloads pmd-detail" data-pmd-detail>
     <div class="pmd-detail__topbar">
@@ -273,14 +279,16 @@ $chgUrl     = $updateUrl !== ''
                         <span><?php echo Text::_('COM_PMDOWNLOADS_COPY_URL'); ?></span>
                     </button>
                 </div>
-                <div class="pmd-endpoint-box">
-                    <span class="pmd-endpoint-box__label"><?php echo Text::_('COM_PMDOWNLOADS_CHANGELOG_URL_LABEL'); ?></span>
-                    <code><?php echo htmlspecialchars($chgUrl, ENT_QUOTES, 'UTF-8'); ?></code>
-                    <button type="button" class="pmd-btn pmd-btn--outline pmd-btn--sm" data-pmd-copy="<?php echo htmlspecialchars($chgUrl, ENT_QUOTES, 'UTF-8'); ?>">
-                        <i class="fa-regular fa-copy" aria-hidden="true"></i>
-                        <span><?php echo Text::_('COM_PMDOWNLOADS_COPY_URL'); ?></span>
-                    </button>
-                </div>
+                <?php if ($chgUrl !== '') : ?>
+                    <div class="pmd-endpoint-box">
+                        <span class="pmd-endpoint-box__label"><?php echo Text::_('COM_PMDOWNLOADS_CHANGELOG_URL_LABEL'); ?></span>
+                        <code><?php echo htmlspecialchars($chgUrl, ENT_QUOTES, 'UTF-8'); ?></code>
+                        <button type="button" class="pmd-btn pmd-btn--outline pmd-btn--sm" data-pmd-copy="<?php echo htmlspecialchars($chgUrl, ENT_QUOTES, 'UTF-8'); ?>">
+                            <i class="fa-regular fa-copy" aria-hidden="true"></i>
+                            <span><?php echo Text::_('COM_PMDOWNLOADS_COPY_URL'); ?></span>
+                        </button>
+                    </div>
+                <?php endif; ?>
             </div>
         <?php endif; ?>
     </div>

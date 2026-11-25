@@ -39,6 +39,23 @@ class XmlView extends AbstractView
             throw new \RuntimeException('Update Server not enabled for this item', 404);
         }
 
+        // Always redirect to the canonical GitHub raw XML when available
+        if ($layout === 'changelog') {
+            $externalChg = PmdownloadsHelper::resolveChangelogUrl($item);
+            if ($externalChg !== '') {
+                $app->redirect($externalChg, 301);
+
+                return;
+            }
+        } else {
+            $externalUpd = PmdownloadsHelper::resolveUpdateServerUrl($item);
+            if ($externalUpd !== '') {
+                $app->redirect($externalUpd, 301);
+
+                return;
+            }
+        }
+
         $origin = Uri::getInstance()->toString(['scheme', 'host', 'port']);
         $doc    = $this->getDocument();
         $doc->setMimeEncoding('application/xml');

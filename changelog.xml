@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<changelogs>
+    <changelog>
+        <element>pkg_pmdownloads</element>
+        <type>package</type>
+        <version>1.0.0</version>
+        <addition>
+            <item>Initial stable release for Joomla! 5 and Joomla! 6 with full en-GB and pt-BR language packs.</item>
+            <item>Native DI/MVC component (com_pmdownloads) with multiple versioned releases per item, automatic file size and SHA-256 checksums, protected local streaming (.htaccess and Path::check), safe GitHub Releases redirects, one-click GitHub API sync in Admin, AJAX faceted filters, ID-less SEF routing, multilingual associations, and Schema.org SoftwareApplication JSON-LD.</item>
+            <item>GitHub-first Update Server XML and Changelog XML integration with dedicated item fields and automatic raw.githubusercontent.com resolution.</item>
+            <item>Showcase module (mod_pmdownloads) with default, grid, and compact layouts.</item>
+            <item>Smart Search plugin (plg_finder_pmdownloads) indexing 6 taxonomies and Content shortcode plugin (plg_content_pmdownloads).</item>
+            <item>Configured native GitHub-hosted Joomla Update Server (updates.xml) and Changelog XML (changelog.xml).</item>
+        </addition>
+    </changelog>
+</changelogs>

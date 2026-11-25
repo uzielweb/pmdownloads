@@ -25,6 +25,8 @@ CREATE TABLE IF NOT EXISTS `#__pmdownloads_items` (
     `cover_image` VARCHAR(500) NOT NULL DEFAULT '',
     `cover_alt` VARCHAR(255) NOT NULL DEFAULT '',
     `enable_updateserver` TINYINT UNSIGNED NOT NULL DEFAULT 0,
+    `updateserver_url` VARCHAR(500) NOT NULL DEFAULT '',
+    `changelog_url` VARCHAR(500) NOT NULL DEFAULT '',
     `releases_search_text` MEDIUMTEXT,
     `featured` TINYINT UNSIGNED NOT NULL DEFAULT 0,
     `state` TINYINT NOT NULL DEFAULT 1,

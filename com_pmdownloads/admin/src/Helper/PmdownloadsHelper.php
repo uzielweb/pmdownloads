@@ -149,6 +149,47 @@ final class PmdownloadsHelper
     }
 
     /**
+     * Resolves the canonical GitHub Update Server XML URL for an item.
+     */
+    public static function resolveUpdateServerUrl(object $item): string
+    {
+        $explicit = trim((string) ($item->updateserver_url ?? ''));
+        if ($explicit !== '' && preg_match('#^https?://#i', $explicit)) {
+            return $explicit;
+        }
+
+        $gh = self::parseGithubRepo((string) ($item->repo_url ?? ''));
+        if ($gh !== null) {
+            return 'https://raw.githubusercontent.com/' . $gh['owner'] . '/' . $gh['repo'] . '/main/updates.xml';
+        }
+
+        return '';
+    }
+
+    /**
+     * Resolves the canonical GitHub Changelog XML URL for an item.
+     */
+    public static function resolveChangelogUrl(object $item): string
+    {
+        $explicit = trim((string) ($item->changelog_url ?? ''));
+        if ($explicit !== '' && preg_match('#^https?://#i', $explicit)) {
+            return $explicit;
+        }
+
+        // Do not guess changelog.xml when an explicit custom updateserver_url is configured without a changelog_url
+        if (trim((string) ($item->updateserver_url ?? '')) !== '') {
+            return '';
+        }
+
+        $gh = self::parseGithubRepo((string) ($item->repo_url ?? ''));
+        if ($gh !== null) {
+            return 'https://raw.githubusercontent.com/' . $gh['owner'] . '/' . $gh['repo'] . '/main/changelog.xml';
+        }
+
+        return '';
+    }
+
+    /**
      * Normalizes changelog text lines into clean list entries.
      *
      * @return  array<int, string>

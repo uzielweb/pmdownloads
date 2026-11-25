@@ -2,18 +2,22 @@
 <extension type="package" method="upgrade">
     <name>Ponto Mega Downloads Suite</name>
     <packagename>pmdownloads</packagename>
-    <author>Ponto Mega</author>
+    <author>Uziel Almeida Oliveira (Ponto Mega)</author>
     <creationDate>2026-11</creationDate>
     <copyright>(C) 2026 Ponto Mega. All rights reserved.</copyright>
     <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
     <authorEmail>contato@pontomega.com.br</authorEmail>
-    <authorUrl>https://pontomega.com.br</authorUrl>
+    <authorUrl>https://github.com/uzielweb/pmdownloads</authorUrl>
     <version>1.0.0</version>
-    <description>Pacote completo Ponto Mega Downloads para Joomla! 5 e 6: componente, módulo vitrine, Smart Search e Content shortcode.</description>
+    <description>Complete Ponto Mega Downloads suite for Joomla! 5 and 6: native MVC download repository, SHA-256 verification, GitHub Releases sync, showcase module, Smart Search indexer, and content shortcode plugin.</description>
     <files folder="packages">
         <file type="component" id="com_pmdownloads">com_pmdownloads.zip</file>
         <file type="module" id="mod_pmdownloads" client="site">mod_pmdownloads.zip</file>
         <file type="plugin" id="pmdownloads" group="finder">plg_finder_pmdownloads.zip</file>
         <file type="plugin" id="pmdownloads" group="content">plg_content_pmdownloads.zip</file>
     </files>
+    <changelogurl>https://raw.githubusercontent.com/uzielweb/pmdownloads/main/changelog.xml</changelogurl>
+    <updateservers>
+        <server type="extension" priority="1" name="Ponto Mega Downloads">https://raw.githubusercontent.com/uzielweb/pmdownloads/main/updates.xml</server>
+    </updateservers>
 </extension>
